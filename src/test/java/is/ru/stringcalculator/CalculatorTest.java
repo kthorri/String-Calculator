@@ -36,5 +36,12 @@ public class CalculatorTest {
   	public void testNewlineSplitter() {
   		assertEquals(6, Calculator.add("1\n2\n3"));
   	}
-
+  @Test
+  	public void testBothSplitters1() {
+  		assertEquals(6, Calculator.add("1\n2,3"));
+  	}
+  @Test
+  	public void testBothSplitters2() {
+  		assertEquals(6, Calculator.add("1,2\n3"));
+  	}
 }
