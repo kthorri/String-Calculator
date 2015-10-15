@@ -3,11 +3,25 @@ package is.ru.stringcalculator;
 public class Calculator {
 
 	public static int add(String text){
-		if(text.equals("")){
-			return 0;
+		String num = text;
+		if (text.contains("//")) {
+			char[] str = text.toCharArray();
+			char[] shorterstr = new char[str.length-4];
+			char delim = str[2];
+			for (int i = 4; i < str.length; i++) {
+				if (delim == str[i]) {
+					str[i] = ',';
+				}
+				shorterstr[i-4] = str[i];
+			}
+			num = String.valueOf(shorterstr);
 		}
-		else if(text.contains(",") | text.contains("\n")){
-			return sum(splitNumbers(text));
+	
+		if(num.equals("")){
+			return 0;
+		}	
+		if(num.contains(",") | num.contains("\n")){
+			return sum(splitNumbers(num));
 		}
 		else
 			return 1;
@@ -18,8 +32,7 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers){
-
-	    return numbers.split(",|\\\n");
+		return numbers.split(",|\n");
 	}
       
   private static int sum(String[] numbers){
