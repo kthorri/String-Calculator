@@ -5,26 +5,29 @@ public class Calculator {
 	public static int add(String text){
 		String num = text;
 		if (text.contains("//")) {
-			char[] str = text.toCharArray();
-			char[] shorterstr = new char[str.length-4];
-			char delim = str[2];
-			for (int i = 4; i < str.length; i++) {
-				if (delim == str[i]) {
-					str[i] = ',';
-				}
-				shorterstr[i-4] = str[i];
-			}
-			num = String.valueOf(shorterstr);
+			num = convertDelimiters(text);
 		}
-	
 		if(num.equals("")){
 			return 0;
 		}	
-		if(num.contains(",") | num.contains("\n")){
+		else if(num.contains(",") | num.contains("\n")){
 			return sum(splitNumbers(num));
 		}
 		else
 			return 1;
+	}
+
+	private static String convertDelimiters(String original) {
+		char[] str = original.toCharArray();
+		char[] shorterstr = new char[str.length-4];
+		char delim = str[2];
+		for (int i = 4; i < str.length; i++) {
+			if (delim == str[i]) {
+				str[i] = ',';
+			}
+			shorterstr[i-4] = str[i];
+		}
+		return String.valueOf(shorterstr);
 	}
 
 	private static int toInt(String number){
