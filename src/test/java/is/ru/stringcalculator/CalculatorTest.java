@@ -53,4 +53,8 @@ public class CalculatorTest {
   	public void testDifferentDelimiters2() {
   		assertEquals(6, Calculator.add("//%\n4%2"));
   	}
+   @Test
+  	public void testCombinedDelimiters() {
+  		assertEquals(16, Calculator.add("//%\n4%2,5\n5"));
+  	}
 }
