@@ -48,7 +48,9 @@ public class Calculator {
     	if (n < 0) {
     		negatives.add(n);
     	}
-		  total += toInt(number);
+    	else if (n <= 1000) {
+    		total += toInt(number);
+    	}
 		}
 		if (!negatives.isEmpty()) {
 			String negs = negatives.toString();
