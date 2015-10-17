@@ -73,10 +73,17 @@ public class CalculatorTest {
   public void testLongerDelimiters(){
     assertEquals(6, Calculator.add("//[***]\n1***2***3"));
   }
-
   @Test
-  public void testDifferentDelimitersOfLength(){
+  public void testDifferentDelimitersOfLength1(){
     assertEquals(6, Calculator.add("//[*][%]\n1*2%3"));
+  }
+  @Test
+  public void testDifferentDelimitersOfAnyLength1(){
+    assertEquals(10, Calculator.add("//[**][%%%%][///]\n1**2%%%%3///4"));
+  }
+  @Test
+  public void testDifferentDelimitersOfAnyLength2(){
+    assertEquals(10, Calculator.add("//[**********][?????????][!!!!!!!!]\n1**********2?????????3!!!!!!!!4"));
   }
 
 }
