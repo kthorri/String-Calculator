@@ -6,7 +6,15 @@ public class Calculator {
 
 	public static int add(String text){
 		String num = text;
-		if (text.contains("//")) {
+		if (num.startsWith("//[")) {
+			String deliminator = text.substring(text.indexOf("[") +1, text.lastIndexOf("]"));
+			num = num.replace("[", "");
+			num = num.replace("]", "");
+			num = num.replace(deliminator, "*");
+			num = convertDelimiters(num);
+
+		}
+		if (num.contains("//")) {
 			num = convertDelimiters(text);
 		}
 		if(num.equals("")){
@@ -20,15 +28,9 @@ public class Calculator {
 	}
 
 	private static String convertDelimiters(String original) {
-		char[] str = original.toCharArray();
-		char[] shorterstr = new char[str.length-4];
-		char delim = str[2];
-		for (int i = 4; i < str.length; i++) {
-			if (delim == str[i]) {
-				str[i] = ',';
-			}
-			shorterstr[i-4] = str[i];
-		}
+		String delim = original.substring(2,3);
+		original = original.replace(delim, ",");
+		String shorterstr = original.substring(4, original.length());
 		return String.valueOf(shorterstr);
 	}
 
