@@ -7,8 +7,6 @@ public class Calculator {
 
 	public static int add(String text){
 		String num = text;
-		//System.out.println(num);
-
 		if (num.startsWith("//[")) {
 			String delim = text.substring(text.indexOf("[") + 1, text.lastIndexOf("]"));
 			delim = delim.replace("[", "");
@@ -22,8 +20,6 @@ public class Calculator {
 			delimiter = delimiter.substring(0, delimiter.length() - 1);
 			String numbers = text.substring(text.indexOf("\n") + 1, text.length());
 			return sum(splitNumbers(numbers, delimiter));
-
-
 		}
 		if (num.contains("//")) {
 			num = convertDelimiters(text);
@@ -34,8 +30,9 @@ public class Calculator {
 		else if(num.contains(",") | num.contains("\n")){
 			return sum(splitNumbers(num));
 		}
-		else
+		else {
 			return 1;
+		}
 	}
 
 	private static String convertDelimiters(String original) {
