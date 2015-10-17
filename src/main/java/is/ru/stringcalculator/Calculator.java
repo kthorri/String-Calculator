@@ -7,7 +7,10 @@ public class Calculator {
 
 	public static int add(String text){
 		String num = text;
-		if (num.startsWith("//[")) {
+		if(num.equals("")){
+			return 0;
+		}
+		else if (num.startsWith("//[")) {
 			String delim = text.substring(text.indexOf("[") + 1, text.lastIndexOf("]"));
 			delim = delim.replace("[", "");
 			String[] delimarr = delim.split("]");
@@ -21,12 +24,11 @@ public class Calculator {
 			String numbers = text.substring(text.indexOf("\n") + 1, text.length());
 			return sum(splitNumbers(numbers, delimiter));
 		}
-		if (num.contains("//")) {
+		else if (num.startsWith("//")) {
 			num = convertDelimiters(text);
+			return sum(splitNumbers(num));
 		}
-		if(num.equals("")){
-			return 0;
-		}
+
 		else if(num.contains(",") | num.contains("\n")){
 			return sum(splitNumbers(num));
 		}
