@@ -56,4 +56,13 @@ public class CalculatorTest {
   public void testCombinedDelimiters2() {
   	assertEquals(80, Calculator.add("//;\n4;1\n30,45"));
   }
+  @Test
+  public void testMinusNumbers1() {
+    try {
+      Calculator.add("-3,-4");
+    }
+    catch (RuntimeException e) {
+      assertEquals("Negatives not allowed: -3, -4", e.getMessage());
+    }
+  }
 }
