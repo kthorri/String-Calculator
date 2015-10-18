@@ -33,7 +33,7 @@ public class Calculator {
 			return sum(splitNumbers(num));
 		}
 		else {
-			return 1;
+			return sum(splitNumbers(num));
 		}
 	}
 
